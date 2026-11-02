@@ -20,18 +20,6 @@ The data comes from the [TMDB 5000 Movie Dataset](https://www.kaggle.com/dataset
 
 This writes `data/movies.csv`, the file the app ingests.
 
-## Roadmap
-
-- [x] Repository setup
-- [ ] Dataset exploration and cleaning
-- [ ] Architecture decisions
-- [ ] Java application skeleton
-- [ ] Ingestion, embeddings and vector store
-- [ ] Retrieval
-- [ ] LLM generation
-- [ ] REST API and UI
-- [ ] Tests, evaluation, Docker and CI
-
 ## License
 
 [MIT](LICENSE)

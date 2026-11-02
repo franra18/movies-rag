@@ -1,0 +1,65 @@
+[
+  {
+    "query": "a sad movie to watch on a rainy day with my girlfriend",
+    "expected": ["The Notebook", "Eternal Sunshine of the Spotless Mind", "Blue Valentine", "Titanic"]
+  },
+  {
+    "query": "something light and funny to watch with my family on a Sunday afternoon",
+    "expected": ["Paddington", "Toy Story", "Finding Nemo", "Home Alone"]
+  },
+  {
+    "query": "a mind-bending movie that makes me question what's real",
+    "expected": ["Inception", "The Matrix", "Memento", "Shutter Island"]
+  },
+  {
+    "query": "a feel-good movie to cheer me up after a bad day",
+    "expected": ["Little Miss Sunshine", "Amélie", "Forrest Gump", "The Secret Life of Walter Mitty"]
+  },
+  {
+    "query": "a scary movie for a sleepover with friends, but not too gory",
+    "expected": ["The Conjuring", "Insidious", "The Sixth Sense", "The Others"]
+  },
+  {
+    "query": "an epic adventure in a fantasy world",
+    "expected": ["The Lord of the Rings: The Fellowship of the Ring", "Harry Potter and the Philosopher's Stone", "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe"]
+  },
+  {
+    "query": "a quiet, lonely movie about someone stranded far from everyone",
+    "expected": ["Moon", "Cast Away", "Gravity"]
+  },
+  {
+    "query": "a 90s crime movie with sharp dialogue",
+    "expected": ["Pulp Fiction", "Reservoir Dogs", "The Usual Suspects"],
+    "filters": { "decade": 1990 }
+  },
+  {
+    "query": "an animated movie for young kids, less than an hour and a half",
+    "expected": ["Toy Story", "Ice Age", "Shrek", "Kung Fu Panda"],
+    "filters": { "maxRuntime": 90 }
+  },
+  {
+    "query": "an inspiring true story about someone overcoming hard times",
+    "expected": ["The Pursuit of Happyness", "The Blind Side"]
+  },
+  {
+    "query": "a tense thriller about hunting down a killer that keeps me on the edge of my seat",
+    "expected": ["Se7en", "Zodiac", "Prisoners", "Gone Girl"]
+  },
+  {
+    "query": "two strangers wandering around a foreign city and slowly connecting",
+    "expected": ["Lost in Translation", "Before Sunrise", "Midnight in Paris"]
+  },
+  {
+    "query": "a dark and violent revenge story",
+    "expected": ["Kill Bill: Vol. 1", "Oldboy", "Taken"]
+  },
+  {
+    "query": "una película nostálgica sobre la amistad en la adolescencia",
+    "expected": ["Stand by Me", "The Perks of Being a Wallflower", "Superbad"],
+    "language": "es"
+  },
+  {
+    "query": "a war movie that shows how horrible war is instead of glorifying it",
+    "expected": ["Saving Private Ryan", "Platoon", "Apocalypse Now", "The Thin Red Line"]
+  }
+]

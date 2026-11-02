@@ -1,16 +1,12 @@
 # Movies RAG
 
-> 🚧 **Work in progress** — this project is being built step by step as a learning exercise.
+Work in progress. A Java RAG app that recommends movies from a free-text description of what you feel like watching, e.g. "a sad movie to watch on a rainy day with my girlfriend".
 
-A Retrieval-Augmented Generation (RAG) application in Java that recommends movies based on the *vibe* you describe in natural language.
+It uses a movie dataset from Kaggle: movies are embedded and stored in a vector database, the closest matches to your request are retrieved, and an LLM picks and explains the recommendations.
 
-```text
-"a sad movie to watch on a rainy day with my girlfriend"
-```
+I'm building it to learn how RAG works, so it's going step by step.
 
-The app embeds a movie dataset (from Kaggle), retrieves the films whose descriptions best match your request, and uses an LLM to pick and explain the recommendations — only from movies that actually exist in the dataset.
-
-## Status
+## Roadmap
 
 - [x] Repository setup
 - [ ] Dataset exploration and cleaning
@@ -21,17 +17,6 @@ The app embeds a movie dataset (from Kaggle), retrieves the films whose descript
 - [ ] LLM generation
 - [ ] REST API and UI
 - [ ] Tests, evaluation, Docker and CI
-
-## Project structure
-
-```text
-docs/   Design notes and technical decisions
-data/   Movie dataset (not committed, see docs once available)
-```
-
-## Secrets
-
-API keys are **never committed**. Local secrets go in a `.env` file, which is git-ignored; `.env.example` lists the expected keys.
 
 ## License
 

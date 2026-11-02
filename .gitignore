@@ -2,3 +2,6 @@
 .env
 .env.*
 !.env.example
+
+# Dataset: download from Kaggle and regenerate (see README)
+data/*.csv

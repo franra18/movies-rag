@@ -1,9 +1,5 @@
-# Technical decisions
+# Decisions
 
-Log of the technical decisions taken in this project: date, options considered and the reason for the choice.
+## License (2026-11-02)
 
-## 2026-11-02 — License
-
-- **Options:** MIT, Apache 2.0
-- **Decision:** MIT
-- **Why:** short, permissive and widely used for portfolio projects.
+MIT. Considered Apache 2.0 too, but MIT is simpler and enough for a personal project.

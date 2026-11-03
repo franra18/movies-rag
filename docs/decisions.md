@@ -46,3 +46,7 @@ Vectors are saved to `data/embeddings.csv` (`id` + vector) so they aren't reques
 ## One document per movie (2026-11-03)
 
 No chunking. The longest text is under 200 words, far below the model's input limit.
+
+## Gemini API free tier (2026-11-03)
+
+Staying on the free tier. For `gemini-embedding-2` it allows 100 requests per minute, 30K tokens per minute and 1,000 requests per day. At one request per movie, the full ingestion takes about 5 days, so it has to wait between calls and resume from what's already in `embeddings.csv`. Requests made while testing count toward the same daily limit. While I tune the text template I'll work with a subset and only run the full ingestion at the end. Enabling billing would cost a few cents per full ingestion if waiting becomes a problem.

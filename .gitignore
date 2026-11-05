@@ -5,7 +5,6 @@
 
 # Dataset: download from Kaggle and regenerate (see README)
 data/*.csv
-/.venv
 
 # Python virtual environment
 .venv/

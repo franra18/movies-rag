@@ -50,3 +50,19 @@ No chunking. The longest text is under 200 words, far below the model's input li
 ## Gemini API free tier (2026-11-03)
 
 Staying on the free tier. For `gemini-embedding-2` it allows 100 requests per minute, 30K tokens per minute and 1,000 requests per day. At one request per movie, the full ingestion takes about 5 days, so it has to wait between calls and resume from what's already in `embeddings.csv`. Requests made while testing count toward the same daily limit. While I tune the text template I'll work with a subset and only run the full ingestion at the end. Enabling billing would cost a few cents per full ingestion if waiting becomes a problem.
+
+## Java and build (2026-11-05)
+
+Java 25 with Maven. Spring AI 2.0 needs Spring Boot 4, which needs Java 17 or later, so any current LTS works; 25 is the newest one. Maven because most Spring AI examples use it.
+
+## Package structure (2026-11-05)
+
+By layer: `controller`, `service`, `repository`, `model`. It's the layout I already use at work. The vector store goes in `repository`, since it's where the movies and their vectors are kept.
+
+## Model abstractions (2026-11-05)
+
+Spring AI's `EmbeddingModel` and `ChatClient` are used directly, without interfaces of my own on top. Changing provider is already a config change. The prefixes and the one-movie-per-request rule live in the service that calls `EmbeddingModel`.
+
+## API key (2026-11-05)
+
+`application.yml` imports the `.env` file the Python scripts already use (`spring.config.import: optional:file:.env[.properties]`), so there's one place for the key. `optional:` keeps the app starting when the variable comes from the environment instead, as it will in CI or Docker.

@@ -9,3 +9,21 @@ data/*.csv
 
 # Python virtual environment
 .venv/
+
+# Java / Maven (Spring Boot)
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDEs
+.idea
+*.iws
+*.iml
+*.ipr
+.classpath
+.factorypath
+.project
+.settings
+.sts4-cache
+.vscode/

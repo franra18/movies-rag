@@ -17,3 +17,11 @@ spring:
             # Must match the model and size the Python ingestion used, or vectors aren't comparable
             model: gemini-embedding-2
             dimensions: 768
+
+movies-rag:
+  movies-file: data/movies.csv
+  embeddings-file: data/embeddings.csv
+  ingest:
+    limit: 0
+    rate-limit-retries: 3
+    rate-limit-wait: 60s

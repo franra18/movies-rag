@@ -66,3 +66,27 @@ Spring AI's `EmbeddingModel` and `ChatClient` are used directly, without interfa
 ## API key (2026-11-05)
 
 `application.yml` imports the `.env` file the Python scripts already use (`spring.config.import: optional:file:.env[.properties]`), so there's one place for the key. `optional:` keeps the app starting when the variable comes from the environment instead, as it will in CI or Docker.
+
+## Running the ingestion (2026-11-09)
+
+A Spring profile, `ingest`:
+
+```
+./mvnw spring-boot:run -Dspring-boot.run.profiles=ingest
+```
+
+With it, an `ApplicationRunner` embeds the movies that aren't in `embeddings.csv` yet, appends them and the app exits. Without it, the app only reads the file and never calls the embedding API on startup.
+
+Ingesting and serving requests are different jobs. On the free tier the full run takes about 5 days, so it's launched once a day until nothing is missing. Doing it in the background on every startup would spend the daily quota each time the app restarts, tests included. An endpoint would need a guard against two runs at the same time. Running it twice is safe: movies already in the file are skipped.
+
+## CSV parsing (2026-11-09)
+
+Apache Commons CSV. Some overviews and taglines contain commas and quotes, and three have line breaks inside the field, so splitting lines by commas doesn't work. Commons CSV deals with that and leaves the conversion to `Movie` to me: lists split by `|`, empty year and runtime. Jackson CSV and OpenCSV map rows to objects by themselves, but those same conversions would need extra configuration.
+
+## embeddings.csv format (2026-11-09)
+
+One line per movie, `id,vector`, with the 768 numbers separated by spaces in a single column. Each line is appended and flushed as soon as its vector arrives, so stopping the ingestion loses at most the line being written. When loading, a line without 768 numbers is skipped and that movie gets embedded again on the next run.
+
+## Rate limits (2026-11-09)
+
+No fixed pace: requests go out one after another and a 429 is handled when it comes. The per-minute limit is solved by waiting and retrying. The daily quota isn't, so the run stops there and the next one resumes. Both arrive as a 429; if the same movie still gets one after a few waits, it's treated as the daily quota.

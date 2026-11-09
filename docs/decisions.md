@@ -90,3 +90,9 @@ One line per movie, `id,vector`, with the 768 numbers separated by spaces in a s
 ## Rate limits (2026-11-09)
 
 No fixed pace: requests go out one after another and a 429 is handled when it comes. The per-minute limit is solved by waiting and retrying. The daily quota isn't, so the run stops there and the next one resumes. Both arrive as a 429; if the same movie still gets one after a few waits, it's treated as the daily quota.
+
+## Ingestion timing (2026-11-09)
+
+95 movies took 53 s, about 0.56 s each, with no 429 even though that pace is slightly above 100 requests per minute. At that speed the whole dataset would take about 45 minutes, so the free tier's 1,000 requests a day is what limits it, not the API: one run a day embeds about 1,000 movies in some 10 minutes, and the full ingestion takes 5 runs.
+
+The full ingestion waits until the text template is chosen in phase 5. Changing the template afterwards would mean embedding every movie again.

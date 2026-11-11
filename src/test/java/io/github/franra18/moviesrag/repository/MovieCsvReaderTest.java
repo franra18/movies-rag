@@ -6,18 +6,27 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import io.github.franra18.moviesrag.model.Movie;
 import java.io.IOException;
-import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class MovieCsvReaderTest {
 
 	private static final String HEADER = "id,title,year,overview,tagline,genres,keywords,runtime,vote_average,vote_count,original_language\n";
 
+	@TempDir
+	Path dir;
+
 	private final MovieCsvReader reader = new MovieCsvReader();
 
+	private Path write(String content) throws IOException {
+		return Files.writeString(dir.resolve("movies.csv"), content);
+	}
+
 	private List<Movie> read(String rows) throws IOException {
-		return reader.read(new StringReader(HEADER + rows));
+		return reader.read(write(HEADER + rows));
 	}
 
 	@Test
@@ -71,7 +80,9 @@ class MovieCsvReaderTest {
 	}
 
 	@Test
-	void missingColumnFailsBeforeReadingRows() {
-		assertThrows(IllegalStateException.class, () -> reader.read(new StringReader("id,title\n1,X\n")));
+	void missingColumnFailsBeforeReadingRows() throws IOException {
+		Path file = write("id,title\n1,X\n");
+
+		assertThrows(IllegalStateException.class, () -> reader.read(file));
 	}
 }

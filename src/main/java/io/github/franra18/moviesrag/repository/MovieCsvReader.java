@@ -31,16 +31,9 @@ public class MovieCsvReader {
 			.get();
 
 	public List<Movie> read(Path path) {
-		try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-			return read(reader);
-		} catch (IOException e) {
-			throw new UncheckedIOException("Can't read " + path, e);
-		}
-	}
-
-	List<Movie> read(Reader reader) throws IOException {
 		List<Movie> movies = new ArrayList<>();
-		try (CSVParser parser = FORMAT.parse(reader)) {
+		try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+				CSVParser parser = FORMAT.parse(reader)) {
 			if (!parser.getHeaderNames().containsAll(COLUMNS)) {
 				throw new IllegalStateException("Expected columns " + COLUMNS + ", found " + parser.getHeaderNames());
 			}
@@ -52,6 +45,8 @@ public class MovieCsvReader {
 					log.warn("Skipping record {}: {}", row.getRecordNumber(), e.getMessage());
 				}
 			}
+		} catch (IOException e) {
+			throw new UncheckedIOException("Can't read " + path, e);
 		}
 		return movies;
 	}

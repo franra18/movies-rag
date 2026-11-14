@@ -30,7 +30,7 @@
   {
     "query": "a 90s crime movie with sharp dialogue",
     "expected": ["Pulp Fiction", "Reservoir Dogs", "The Usual Suspects"],
-    "filters": { "decade": 1990 }
+    "filters": { "fromYear": 1990, "toYear": 1999 }
   },
   {
     "query": "an animated movie for young kids, less than an hour and a half",

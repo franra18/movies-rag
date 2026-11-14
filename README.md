@@ -42,6 +42,16 @@ You need JDK 25 and a Gemini API key from [Google AI Studio](https://aistudio.go
 
 `./mvnw test` runs the tests. One of them starts the whole application, so it also needs the key.
 
+## Evaluating searches
+
+`eval/queries.json` holds 15 test requests with the movies I'd expect for each. To run them against the current vectors:
+
+```
+./mvnw spring-boot:run -Dspring-boot.run.profiles=eval -Dspring-boot.run.arguments=--label=baseline
+```
+
+It writes the top results of every request to `eval/results/`, marking the expected ones, and exits. The label is optional and goes into the file name. Each run spends 15 embedding requests.
+
 ## License
 
 [MIT](LICENSE)

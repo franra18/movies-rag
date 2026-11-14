@@ -30,7 +30,8 @@ class MovieVectorStoreTest {
 		embeddingsFile.append(embeddings, 99, new float[] {0.4f, 0.5f, 0.6f});
 
 		MovieVectorStore store = new MovieVectorStore(new MovieCsvReader(), embeddingsFile,
-				new MoviesRagProperties(movies, embeddings, new MoviesRagProperties.Ingest(0, 0, Duration.ZERO)));
+				new MoviesRagProperties(movies, embeddings, new MoviesRagProperties.Ingest(0, 0, Duration.ZERO),
+						new MoviesRagProperties.Search(5)));
 
 		assertEquals(1, store.size());
 		MovieVectorStore.Entry entry = store.entries().getFirst();

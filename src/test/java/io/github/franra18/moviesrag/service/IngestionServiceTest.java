@@ -41,7 +41,7 @@ class IngestionServiceTest {
 				3,Three,2003,Third overview.,,Drama,,90,7.0,10,en
 				""");
 		MoviesRagProperties properties = new MoviesRagProperties(movies, embeddings(),
-				new MoviesRagProperties.Ingest(limit, 2, Duration.ZERO));
+				new MoviesRagProperties.Ingest(limit, 2, Duration.ZERO), new MoviesRagProperties.Search(5));
 		return new IngestionService(embeddingModel, new MovieCsvReader(), embeddingsFile, properties);
 	}
 

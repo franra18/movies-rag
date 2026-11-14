@@ -25,3 +25,5 @@ movies-rag:
     limit: 0
     rate-limit-retries: 3
     rate-limit-wait: 60s
+  search:
+    top-k: 5

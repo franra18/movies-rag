@@ -5,12 +5,18 @@ import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("movies-rag")
-public record MoviesRagProperties(Path moviesFile, Path embeddingsFile, Ingest ingest) {
+public record MoviesRagProperties(Path moviesFile, Path embeddingsFile, Ingest ingest, Search search) {
 
 	/**
 	 * @param limit             most movies embedded in one run, 0 for no limit
 	 * @param rateLimitRetries  waits after a 429 before giving up on the run
 	 */
 	public record Ingest(int limit, int rateLimitRetries, Duration rateLimitWait) {
+	}
+
+	/**
+	 * @param topK movies returned by each search
+	 */
+	public record Search(int topK) {
 	}
 }

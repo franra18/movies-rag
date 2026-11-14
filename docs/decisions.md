@@ -96,3 +96,10 @@ No fixed pace: requests go out one after another and a 429 is handled when it co
 95 movies took 53 s, about 0.56 s each, with no 429 even though that pace is slightly above 100 requests per minute. At that speed the whole dataset would take about 45 minutes, so the free tier's 1,000 requests a day is what limits it, not the API: one run a day embeds about 1,000 movies in some 10 minutes, and the full ingestion takes 5 runs.
 
 The full ingestion waits until the text template is chosen in phase 5. Changing the template afterwards would mean embedding every movie again.
+
+## Retrieval (2026-11-14)
+
+- **Top-k:** configurable in `movies-rag.search.top-k`, 5 by default. No similarity threshold: in the phase 2 experiment the scores of a good and a bad match were close, so a fixed cutoff would either drop good movies or keep everything. Deciding that nothing fits is left to the LLM in phase 6.
+- **Query:** embedded as written, with the query prefix. Rewriting it with the LLM first is something to compare against this baseline, not the starting point.
+- **Metadata filters:** the search takes optional filters (a range of years, a max runtime) and drops the movies that don't match before ranking. A year range rather than a decade, so "after 2000" fits as well as "the 90s". Pulling them out of free text is left for phase 6.
+- **Vector only**, no keyword search. The test queries describe a mood, and their words rarely appear in the overviews. Revisit if failures come from names or titles.

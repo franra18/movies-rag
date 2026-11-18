@@ -6,6 +6,9 @@
 # Dataset: download from Kaggle and regenerate (see README)
 data/*.csv
 
+# Search eval reports, written by the eval profile
+eval/results/
+
 # Python virtual environment
 .venv/
 

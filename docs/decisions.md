@@ -103,3 +103,7 @@ The full ingestion waits until the text template is chosen in phase 5. Changing 
 - **Query:** embedded as written, with the query prefix. Rewriting it with the LLM first is something to compare against this baseline, not the starting point.
 - **Metadata filters:** the search takes optional filters (a range of years, a max runtime) and drops the movies that don't match before ranking. A year range rather than a decade, so "after 2000" fits as well as "the 90s". Pulling them out of free text is left for phase 6.
 - **Vector only**, no keyword search. The test queries describe a mood, and their words rarely appear in the overviews. Revisit if failures come from names or titles.
+
+## Text template (2026-11-18)
+
+The phase 4 template stays. In the first evaluation most test queries got at least 3 reasonable movies in the top 5. The misses came from how the queries are written: they describe who the movie is for ("with my family on a Sunday afternoon"), use negations ("not too gory") or share a word with an unrelated title (*Sleepover*). A different template wouldn't fix those, so the full ingestion goes ahead with this one. Query rewriting, in phase 6, is the next thing to try.
